@@ -1,14 +1,16 @@
 import express  from "express";
+import dotenv from "dotenv";
 import cors from "cors";
+dotenv.config();
 
 const server = express();
 server.use(express.json());
 server.use(cors());
 
-server.get("/health",(req,res)=>{
+server.get("/health",async(req,res)=>{  
 res.send("OK");
 })
 
-server.listen(4000,()=>{
-    console.log("Listening on port 4000");
-})
+server.listen(process.env.PORT, () => {
+	console.log(`Listening on port ${process.env.PORT}`);
+});
