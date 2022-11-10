@@ -4,13 +4,13 @@ import {Request, Response} from "express";
 
 async function createGuess(req:Request, res:Response) {
     const guess = req.body as Guess;
-    const userId = 1;
+    const userId:number = res.locals.userId;
     const matchId:number = Number(req.params.matchId);
     try {
-      await insertNewGuess(guess, userId, matchId );    
+      await insertNewGuess(guess, matchId, userId );    
   
       return res.sendStatus(201);
-    } catch (error) {
+    } catch (error) {     
       return res.sendStatus(500);
     }
   }
