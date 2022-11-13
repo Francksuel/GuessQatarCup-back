@@ -8,13 +8,13 @@ dotenv.config();
 
 
 
-const server = express();
-server.use(express.json());
-server.use(cors());
+const server = express()
+.use(express.json())
+.use(cors())
 
-server.use(guessRouter);
-server.use(authRouter);
-server.use(matchRouter);
+.use(guessRouter)
+.use(authRouter)
+.use(matchRouter);
 
 server.listen(process.env.PORT, () => {
 	console.log(`Listening on port ${process.env.PORT}`);

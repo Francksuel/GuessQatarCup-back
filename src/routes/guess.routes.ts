@@ -1,11 +1,13 @@
 import express from "express";
 import { deleteGuessByMatchId, getRanking, upsertGuess } from "../controllers/guess.controllers.js";
+import { validateSchema } from "../middlewares/schema.middleware.js";
 import { validateToken } from "../middlewares/validate.token.js";
+import { schemaGoals } from "../schemas/goals.schema.js";
 
-const guessRouter = express.Router();
+const guessRouter = express.Router()
 
-guessRouter.post("/guess/:matchId",validateToken,upsertGuess);
-guessRouter.delete("/guess/:matchId",validateToken,deleteGuessByMatchId);
-guessRouter.get("/ranking", getRanking);
+.post("/guess/:matchId",validateToken,validateSchema(schemaGoals),upsertGuess)
+.delete("/guess/:matchId",validateToken,deleteGuessByMatchId)
+.get("/ranking", getRanking);
 
 export {guessRouter};
