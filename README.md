@@ -11,11 +11,11 @@ Link to deploy back-end: https://guess-qatar-cup.herokuapp.com/
 
 **People can register using:**
 
-POST "/sign-up": 
-{
- "name": (maximum 50 characters),
- "password": (minimun 4 characters)
-}
+POST "/sign-up":<br/> 
+{<br/>
+ "name": (maximum 50 characters),<br/>
+ "password": (minimun 4 characters)<br/>
+}<br/>
 
 **User can login using:**
 
