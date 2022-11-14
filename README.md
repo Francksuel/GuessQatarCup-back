@@ -19,71 +19,71 @@ POST "/sign-up":<br/>
 
 **User can login using:**
 
-POST "/sign-in" (example):
-{
-  "name":"test_prod",
-  "password":"1234"
-}
+POST "/sign-in" (example):<br/>
+{<br/>
+  "name":"test_prod",<br/>
+  "password":"1234"<br/>
+}<br/>
 
-You will get a token for the authenticated routes.
+You will get a token for the authenticated routes.<br/>
 
 **Anyone can see the matches registered:**
 
-GET "/match":
-You will get a array of objects like this:
-[
-  {
-    "id": 1,
-    "team1": "Catar",
-    "team2": "Equador",
-    "goalsTeam1": null,
-    "goalsTeam2": null,
-    "matchDate": "2022-11-20T00:00:00.000Z"
-  },
-  {
-    "id": 2,
-    "team1": "Inglaterra",
-    "team2": "Irã",
-    "goalsTeam1": null,
-    "goalsTeam2": null,
-    "matchDate": "2022-11-21T00:00:00.000Z"
-  }
-  ]
+GET "/match":<br/>
+You will get a array of objects like this:<br/>
+[<br/>
+  {<br/>
+    "id": 1,<br/>
+    "team1": "Catar",<br/>
+    "team2": "Equador",<br/>
+    "goalsTeam1": null,<br/>
+    "goalsTeam2": null,<br/>
+    "matchDate": "2022-11-20T00:00:00.000Z"<br/>
+  },<br/>
+  {<br/>
+    "id": 2,<br/>
+    "team1": "Inglaterra",<br/>
+    "team2": "Irã",<br/>
+    "goalsTeam1": null,<br/>
+    "goalsTeam2": null,<br/>
+    "matchDate": "2022-11-21T00:00:00.000Z"<br/>
+  }<br/>
+  ]<br/>
   
  **Anyone can see the ranking of users ranked by score:**
  
- GET "/ranking":
- You will get a array of objects like this:
-[
-  {
-    "name": "test_prod",
-    "score": "3"
-  }
-]
+ GET "/ranking":<br/>
+ You will get a array of objects like this:<br/>
+[<br/>
+  {<br/>
+    "name": "test_prod",<br/>
+    "score": "3"<br/>
+  }<br/>
+]<br/>
 
  **Anyone can change the match result (I recommend only with correct results) using:**
 
-PUT "match/result/:idMatch" (example):
+PUT "match/result/:idMatch" (example):<br/>
 
-{
-  "goalsTeam1":3,
-  "goalsTeam2":0
-}
+{<br/>
+  "goalsTeam1":3,<br/>
+  "goalsTeam2":0<br/>
+}<br/>
 
 **Only logged users can guess using:**
 
-POST "/guess/:idMatch" (example):
-Remember to use a header with a valid token.
+POST "/guess/:idMatch" (example):<br/>
+Remember to use a header with a valid token.<br/>
 
-{
-  "goalsTeam1":3,
-  "goalsTeam2":0
-}
+{<br/>
+  "goalsTeam1":3,<br/>
+  "goalsTeam2":0<br/>
+}<br/>
 
 **Only logged users can delete your guess using:**
 
-DELETE "/guess/:idMatch"
-Remember to use a header with a valid token.
+DELETE "/guess/:idMatch"<br/>
+Remember to use a header with a valid token.<br/>
 
 
 **Coming soon:**
