@@ -1,6 +1,6 @@
 import { connection } from "../database/database.js";
 import { QueryResult } from "pg";
-import { Match, MatchEntity, MatchResult } from "../protocols/match.js";
+import { MatchEntity, MatchResult } from "../protocols/match.js";
 
 async function getMatchById(
 	matchId: number
@@ -8,9 +8,9 @@ async function getMatchById(
 	return connection.query(`SELECT * FROM matches WHERE id=$1;`, [matchId]);
 }
 
-async function listMatches(): Promise<QueryResult<Match>> {
+async function listMatches(): Promise<QueryResult<MatchEntity>> {
 	return connection.query(
-		`SELECT t1.name AS team1,t2.name AS team2,m."goalsTeam1",m."goalsTeam2", m."matchDate"
+		`SELECT m.id, t1.name AS team1,t2.name AS team2,m."goalsTeam1",m."goalsTeam2", m."matchDate"
 		FROM matches m 
 		JOIN countries t1 ON m."team1Id"=t1.id
 		JOIN countries t2 ON m."team2Id"=t2.id 
