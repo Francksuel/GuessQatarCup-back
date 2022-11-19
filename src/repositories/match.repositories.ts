@@ -14,7 +14,7 @@ async function listMatches(): Promise<QueryResult<MatchEntity>> {
 		FROM matches m 
 		JOIN countries t1 ON m."team1Id"=t1.id
 		JOIN countries t2 ON m."team2Id"=t2.id 
-		ORDER BY m."matchDate";`
+		ORDER BY m.id;`
 	);
 }
 
