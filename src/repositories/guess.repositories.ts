@@ -13,6 +13,15 @@ async function getGuessByMatchId(
 	);
 }
 
+async function listGuessesByUserId(	
+	userId: number
+): Promise<QueryResult<GuessEntity[]>> {
+	return connection.query(
+		`SELECT * FROM guesses WHERE "userId"=$1 ORDER BY "matchId";`,
+		[userId]
+	);
+}
+
 async function insertNewGuess(
 	guess: Guess,
 	matchId: number,
@@ -83,6 +92,7 @@ async function listRanking(): Promise<QueryResult<userRanking>> {
 
 export {
 	getGuessByMatchId,
+	listGuessesByUserId,
 	insertNewGuess,
 	updateGuess,
 	deleteGuess,

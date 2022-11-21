@@ -3,6 +3,7 @@ import {
 	deleteGuess,
 	getGuessByMatchId,
 	insertNewGuess,
+	listGuessesByUserId,
 	listRanking,
 	updateGuess,
 } from "../repositories/guess.repositories.js";
@@ -53,4 +54,14 @@ async function getRanking(req: Request, res: Response) {
 	}
 }
 
-export { upsertGuess, deleteGuessByMatchId, getRanking };
+async function getGuesses(req: Request, res: Response) {
+	const userId: number = res.locals.userId;
+	try {
+		const guesses = await listGuessesByUserId(userId);
+		res.status(200).send(guesses.rows);
+	} catch (error) {
+		return res.sendStatus(500);
+	}
+}
+
+export { upsertGuess, deleteGuessByMatchId, getRanking, getGuesses };
