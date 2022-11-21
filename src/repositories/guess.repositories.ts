@@ -17,7 +17,16 @@ async function listGuessesByUserId(
 	userId: number
 ): Promise<QueryResult<GuessEntity[]>> {
 	return connection.query(
-		`SELECT * FROM guesses WHERE "userId"=$1 ORDER BY "matchId";`,
+		`SELECT
+			t1.name as "team1",
+			t2.name as "team2",
+			g."goalsTeam1",
+			g."goalsTeam2"
+		FROM guesses g
+		JOIN matches m ON g."matchId"=m.id
+		JOIN countries t1 ON m."team1Id"=t1.id
+		JOIN countries t2 ON m."team2Id"=t2.id 
+		WHERE g."userId"=$1 ORDER BY g."matchId";`,
 		[userId]
 	);
 }
